@@ -6,6 +6,9 @@ export HOME="/home/vnc"
 # If the VNC password is not configured yet, let's add it.
 if  [ ! -f "$HOME/.vnc/passwd" ]; then
   mkdir -p "$HOME/.vnc"
+  
+  #We try to read the password from ENV VAR VNCPWD
+  env |grep VNCPWD | cut -d'=' -f2 >> $HOME/Documents/vncpasswd
 
   # We try to read the password from $HOME/Documents/vncpasswd.
   # VNC passwords must be between 6 and 8 characters long.
